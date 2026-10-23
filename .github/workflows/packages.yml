@@ -1,0 +1,20 @@
+name: MTTX packages
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    steps:
+      - id: mttx
+        uses: imranur-rahman/mttx-action@v1
+        with:
+          packages: express, koa
+          ecosystem: npm
+          start-date: 2024-01-01
+          end-date: 2025-12-31
+          max-mttr-days: 30
+      - run: |
+          echo "mttu=${{ steps.mttx.outputs.mttu }} mttr=${{ steps.mttx.outputs.mttr }} over=${{ steps.mttx.outputs.over-threshold }}"
+          echo '${{ steps.mttx.outputs.results }}'
+          ls -R mttx-badges

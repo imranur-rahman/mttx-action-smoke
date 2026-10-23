@@ -1,0 +1,17 @@
+name: MTTX pull request
+on: pull_request
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: mttx
+        uses: imranur-rahman/mttx-action@v1
+        with:
+          target: pull-request
+      - run: echo '${{ steps.mttx.outputs.added }} ${{ steps.mttx.outputs.comment-url }}'
