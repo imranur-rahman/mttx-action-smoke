@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: mttx
-        uses: imranur-rahman/mttx-action@v1
+        uses: imranur-rahman/mttx-action@v1.0.2
         with:
           packages: express, koa
           ecosystem: npm
